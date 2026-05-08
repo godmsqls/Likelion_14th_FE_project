@@ -28,6 +28,11 @@ body {
   display: flex;
   /*place-items: center;*/
   /* min-height: 100vh; */
+  -webkit-user-select: none; /* Chrome, Safari */
+  -moz-user-select: none;
+  -ms-user-select: none;     /* IE10+ */
+  user-select: none;          /* 표준 */
+  -webkit-touch-callout: none; 
 }
 
 @media (prefers-color-scheme: light) {
