@@ -3,6 +3,8 @@ import DropDown from "./components/DropDown";
 import MovieCard from "./components/MovieCard";
 import WishListPanel from "./components/WishListPanel";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import FilterBar from "./components/FilterBar";
 
 // ─── Dummy Data ────────────────────────────────────────────────────────────────
 // TODO: Replace with API call, e.g. fetch('/api/movies')
@@ -508,102 +510,22 @@ export default function App() {
       `}</style>
 
       {/* Header */}
-      <header
-        style={{
-          minWidth: "100vw",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "18px 40px",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-          position: "sticky",
-          top: 0,
-          background: "#0D1117",
-          backdropFilter: "blur(12px)",
-          zIndex: 50,
-        }}
-      >
-        <h1
-          style={{
-            margin: 0,
-            fontSize: "24px",
-            fontFamily: "'Serif-Bold', serif",
-            fontWeight: "700",
-            letterSpacing: "0.5px",
-            // color: "#e8e0d0",
-          }}
-        >
-          KWU LIKELION THEATER
-        </h1>
-
-        {/* Search */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            // background: "rgba(255,255,255,0.05)",
-            borderBottom: "1px solid #C9D1D9",
-            // borderRadius: "8px",
-            padding: "8px 14px",
-            width: "357px",
-            fontFamily: "Serif-Regular"
-          }}
-        >
-          <input
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="검색어를 입력하세요"
-            style={{
-              flex: 1,
-              background: "none",
-              border: "none",
-              outline: "none",
-              color: "#C9D1D9",
-              fontSize: "20px",
-              fontFamily: "Serif-Regular",
-            }}
-          />
-          <SearchIcon />
-        </div>
-
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: "none",
-            border: "none",
-            color: "rgba(220,210,195,0.7)",
-            cursor: "pointer",
-            padding: "4px",
-            display: "flex",
-          }}
-        >
-          <MenuIcon isOpen={menuOpen} />
-        </button>
-      </header>
+      <Header 
+        searchQuery={searchQuery} 
+        setSearchQuery={setSearchQuery}
+        menuOpen={menuOpen}
+        setMenuOpen={menuOpen}
+        />
 
       {/* Filter Bar */}
-      <div
-        style={{
-          padding: "12px 30px",
-          display: "flex",
-          gap: "30px",
-          borderBottom: "1px solid rgba(255,255,255,0.05)",
-        }}
-      >
-        <DropDown
-          label="장르"
-          options={GENRES}
-          selected={selectedGenre !== "전체" ? selectedGenre : null}
-          onSelect={(v) => setSelectedGenre(v)}
-        />
-        <DropDown
-          label="정렬"
-          options={SORT_OPTIONS}
-          selected={sortBy}
-          onSelect={(v) => setSortBy(v)}
-        />
-      </div>
+      <FilterBar
+        genres={GENRES}
+        sortOptions={SORT_OPTIONS}
+        selectedGenre={selectedGenre}
+        setSelectedGenre={setSelectedGenre}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
 
       {/* Main Content */}
       <div
